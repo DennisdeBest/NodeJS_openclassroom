@@ -1,11 +1,16 @@
 {
-  "name": "todolist",
-  "version": "0.1.0",
+  "name": "NodeJS_openclassroom",
+  "version": "0.0.0",
+  "description": "",
+  "main": "EventListeners.js",
   "dependencies": {
-    "markdown": "~0.4"
+    "ejs": "^2.4.1",
+    "ent": "^2.2.0",
+    "express": "^4.13.4",
+    "latest": "^0.2.0",
+    "node": "^0.0.0",
+    "socket.io": "^1.4.5"
   },
-  "description": "a synchronized todolist for multiple users using socket.io",
-  "main": "Todolist.js",
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
