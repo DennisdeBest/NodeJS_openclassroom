@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <title>Socket.io chat</title>
+
+</head>
+
+
+
+<body>
+
+<h1>Chat</h1>
+
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+
+<section id="chatbody">
+
+    <form action="/" method="post" id="chat-form">
+    <input type="text" id="userInput" name="userInput"/>
+    <input type="submit" id="sendMessage" name="sendMessage" value="Send"/>
+    </form>
+    <div id="messages">
+
+    </div>
+</section>
+
+<script>
+
+
+    var socket = io.connect('http://192.168.0.102:8080');
+
+    var username = prompt('username ?');
+    socket.emit('new_client', username);
+    socket.on('new_client', function (username) {
+        $('#messages').prepend('<p><strong>'+username+'</strong> Just joined the chat </p>');
+    });
+    socket.on('message', function (data) {
+        addMessage(data.user, data.message);
+    });
+
+    $('#chat-form').submit(function () {
+        var message = $('#userInput').val();
+        socket.emit('message', message);
+        addMessage(username,message);
+        $('#userInput').val('').focus();
+        return false;
+
+        //$('#messages').append($('#userInput').val());
+
+    })
+
+    function addMessage(user, message) {
+        $('#messages').prepend('<p><strong>'+user+' : </strong>'+message+'</p>');
+    }
+
+</script>
+
+
+
+</body>
+
+</html>
