@@ -1,5 +1,5 @@
 var app = require('express');
-var http = require('http');
+var server = require('http').createServer(app);
 var fs = require('fs');
 var ent = require('ent');
 
